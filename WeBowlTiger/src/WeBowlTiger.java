@@ -1,3 +1,4 @@
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Image;
@@ -51,91 +52,92 @@ public class WeBowlTiger {
 		frame.setBounds(100, 100, 450, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setCursor(Cursor.HAND_CURSOR);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setSize(new Dimension(40, 40));
+		int Width = 40;
+		int Height = 40;
 		
-		BufferedImage simg = null;
+		BufferedImage simgPins = null;
 		try {
-			simg = ImageIO.read(new File("C:\\sprint\\WeBowlTiger\\images\\pin-on.jpg"));
+			simgPins = ImageIO.read(new File("img\\pin-on.jpg"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Image dimg = simg.getScaledInstance(lblNewLabel.getWidth(), lblNewLabel.getHeight(),Image.SCALE_SMOOTH);
+		Image dimgPins = simgPins.getScaledInstance(Width, Height,Image.SCALE_SMOOTH);
 		
 		BufferedImage simgball = null;
 		try {
-			simgball = ImageIO.read(new File("C:\\sprint\\WeBowlTiger\\images\\default-ball.jpg"));
+			simgball = ImageIO.read(new File("img\\default-ball.jpg"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}		
+		Image dimgball = simgball.getScaledInstance(Width, Height,Image.SCALE_SMOOTH);
 		
+		JLabel lblPin1 = new JLabel("1");
+		lblPin1.setIcon(new ImageIcon(dimgPins));
+		lblPin1.setSize(new Dimension(Width, Height));
+		lblPin1.setBounds(184, 193, 34, 56);
+		frame.getContentPane().add(lblPin1);
+
+		JLabel lblPin2 = new JLabel("2");
+		lblPin2.setIcon(new ImageIcon(dimgPins));
+		lblPin2.setSize(new Dimension(Width, Height));
+		lblPin2.setBounds(135, 142, 34, 56);
+		frame.getContentPane().add(lblPin2);
+
+		JLabel lblPin3 = new JLabel("3");
+		lblPin3.setIcon(new ImageIcon(dimgPins));
+		lblPin3.setSize(new Dimension(Width, Height));
+		lblPin3.setBounds(232, 142, 34, 56);
+		frame.getContentPane().add(lblPin3);
+
+		JLabel lblPin4 = new JLabel("4");
+		lblPin4.setIcon(new ImageIcon(dimgPins));
+		lblPin4.setSize(new Dimension(Width, Height));
+		lblPin4.setBounds(90, 78, 34, 56);
+		frame.getContentPane().add(lblPin4);
 		
+		JLabel lblPin5 = new JLabel("5");
+		lblPin5.setIcon(new ImageIcon(dimgPins));
+		lblPin5.setSize(new Dimension(Width, Height));
+		lblPin5.setBounds(184, 78, 34, 56);
+		frame.getContentPane().add(lblPin5);
 		
-		Image dimgball = simgball.getScaledInstance(lblNewLabel.getWidth(), lblNewLabel.getHeight(),Image.SCALE_SMOOTH);
-		lblNewLabel.setIcon(new ImageIcon(dimg));
-		lblNewLabel.setBounds(42, 11, 34, 56);
-		frame.getContentPane().add(lblNewLabel);
+		JLabel lblPin6 = new JLabel("6");
+		lblPin6.setIcon(new ImageIcon(dimgPins));
+		lblPin6.setSize(new Dimension(Width, Height));
+		lblPin6.setBounds(278, 78, 34, 56);
+		frame.getContentPane().add(lblPin6);
 		
-		JLabel label = new JLabel("New label");
-		label.setIcon(new ImageIcon(dimg));
-		label.setSize(new Dimension(40, 40));
-		label.setBounds(153, 20, 34, 39);
-		frame.getContentPane().add(label);
+		JLabel lblPin7 = new JLabel("7");
+		lblPin7.setSize(new Dimension(Width, Height));		
+		lblPin7.setIcon(new ImageIcon(dimgPins));
+		lblPin7.setBounds(42, 11, 34, 56);
+		frame.getContentPane().add(lblPin7);
+	
+		JLabel lblPin8 = new JLabel("8");
+		lblPin8.setIcon(new ImageIcon(dimgPins));
+		lblPin8.setSize(new Dimension(Width, Height));
+		lblPin8.setBounds(153, 20, 34, 39);
+		frame.getContentPane().add(lblPin8);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon(dimgball));
-		lblNewLabel_1.setBounds(184, 580, 51, 46);
-		frame.getContentPane().add(lblNewLabel_1);
+		JLabel lblPin9 = new JLabel("9");
+		lblPin9.setIcon(new ImageIcon(dimgPins));
+		lblPin9.setSize(new Dimension(Width, Height));
+		lblPin9.setBounds(232, 11, 34, 56);
+		frame.getContentPane().add(lblPin9);
 		
-		JLabel label_1 = new JLabel("New label");
-		label_1.setIcon(new ImageIcon(dimg));
-		label_1.setSize(new Dimension(40, 40));
-		label_1.setBounds(232, 11, 34, 56);
-		frame.getContentPane().add(label_1);
+		JLabel lblPin10 = new JLabel("10");
+		lblPin10.setIcon(new ImageIcon(dimgPins));
+		lblPin10.setSize(new Dimension(Width, Height));
+		lblPin10.setBounds(330, 16, 34, 46);
+		frame.getContentPane().add(lblPin10);
 		
-		JLabel label_2 = new JLabel("New label");
-		label_2.setIcon(new ImageIcon(dimg));
-		label_2.setSize(new Dimension(40, 40));
-		label_2.setBounds(330, 16, 34, 46);
-		frame.getContentPane().add(label_2);
-		
-		JLabel label_3 = new JLabel("New label");
-		label_3.setIcon(new ImageIcon(dimg));
-		label_3.setSize(new Dimension(40, 40));
-		label_3.setBounds(90, 78, 34, 56);
-		frame.getContentPane().add(label_3);
-		
-		JLabel label_4 = new JLabel("New label");
-		label_4.setIcon(new ImageIcon(dimg));
-		label_4.setSize(new Dimension(40, 40));
-		label_4.setBounds(184, 78, 34, 56);
-		frame.getContentPane().add(label_4);
-		
-		JLabel label_5 = new JLabel("New label");
-		label_5.setIcon(new ImageIcon(dimg));
-		label_5.setSize(new Dimension(40, 40));
-		label_5.setBounds(278, 78, 34, 56);
-		frame.getContentPane().add(label_5);
-		
-		JLabel label_6 = new JLabel("New label");
-		label_6.setIcon(new ImageIcon(dimg));
-		label_6.setSize(new Dimension(40, 40));
-		label_6.setBounds(135, 142, 34, 56);
-		frame.getContentPane().add(label_6);
-		
-		JLabel label_7 = new JLabel("New label");
-		label_7.setIcon(new ImageIcon(dimg));
-		label_7.setSize(new Dimension(40, 40));
-		label_7.setBounds(232, 142, 34, 56);
-		frame.getContentPane().add(label_7);
-		
-		JLabel label_8 = new JLabel("New label");
-		label_8.setIcon(new ImageIcon(dimg));
-		label_8.setSize(new Dimension(40, 40));
-		label_8.setBounds(184, 193, 34, 56);
-		frame.getContentPane().add(label_8);
+		JLabel lblBall = new JLabel("ball");
+		lblBall.setIcon(new ImageIcon(dimgball));
+		lblBall.setBounds(184, 580, 51, 46);
+		frame.getContentPane().add(lblBall);
 	}
 }
