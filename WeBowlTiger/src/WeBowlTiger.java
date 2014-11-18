@@ -25,6 +25,7 @@ import java.awt.Font;
 public class WeBowlTiger {
 
 	private JFrame frame;
+     private JLabel ball;
 
 	/**
 	 * Launch the application.
@@ -47,6 +48,11 @@ public class WeBowlTiger {
 	 */
 	public WeBowlTiger() {
 		initialize();
+	}
+
+     public void move( ) {
+		MovingBall movingball = new MovingBall(frame,ball,20);
+		movingball.draw();
 	}
 
 	/**
@@ -147,6 +153,12 @@ public class WeBowlTiger {
 		lblBall.setIcon(new ImageIcon(dimgball));
 		lblBall.setBounds(184, 580, 51, 46);
 		frame.getContentPane().add(lblBall);
+           lblBall.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				move();
+			}
+		});
 		
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
