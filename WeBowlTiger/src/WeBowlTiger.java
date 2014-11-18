@@ -1,3 +1,4 @@
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Image;
@@ -51,6 +52,7 @@ public class WeBowlTiger {
 		frame.setBounds(100, 100, 450, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setCursor(Cursor.HAND_CURSOR);
 		
 		int Width = 40;
 		int Height = 40;
