@@ -35,11 +35,14 @@ public class WeBowlTiger {
     
     
     private void drawpins( boolean[] pins) {
-    	for( int idx=0; idx<10; idx++) {
-    		
-    		if ( pins[idx]==true ) {
+    	for( int idx=0; idx<10; idx++) 
+    	{
+    		if ( pins[idx]==true )
+    		{
     			pinsLblArray.get(idx).setVisible(true);
-    		} else {
+    		} 
+    		else 
+    		{
     			pinsLblArray.get(idx).setVisible(false);
     		}
     	}
@@ -50,13 +53,19 @@ public class WeBowlTiger {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
+				try 
+				{
 					WeBowlTiger window = new WeBowlTiger();
 					window.frame.setVisible(true);
-				} catch (Exception e) {
+				} 
+				catch (Exception e) 
+				{
 					e.printStackTrace();
 				}
 			}
@@ -67,31 +76,46 @@ public class WeBowlTiger {
 	/**
 	 * Create the application.
 	 */
-	public WeBowlTiger() {
+	public WeBowlTiger() 
+	{
 		initialize();
 	}
 
-     public void move( ) throws InterruptedException {
+	private void resetPins(boolean[] pins) throws InterruptedException
+	{
+		//Sleep before resetting the pins
+		Thread.sleep(4000);
+		
+		for( int idx=0; idx<10;idx++ ) 
+			pins[idx]=true;
+		
+		drawpins(pins);
+	}
+	
+    public void move() throws InterruptedException  
+    {
     	PinDrop pindrop = new PinDrop();
     	assert( pindrop != null );
     	
     	pindrop.getPinsStillStanding(pins);
+    	
 		MovingBall movingball = new MovingBall(frame,ball,60);
-		
 		movingball.draw();
-		if ( firstthrow == false )
-		{
-			firstthrow=true;			
-			drawpins(pins);
-			Thread.sleep(4000);
-			for( int idx=0; idx<10;idx++ ) 
-				pins[idx]=true;
-		} 
-		else {
-			firstthrow=false;
-		}
 		
-		drawpins(pins);
+		if ( firstthrow == true )
+		{
+			//We are in our first bowl attempt
+			firstthrow=false;
+			drawpins(pins);
+		} 
+		else 
+		{
+			//We are in our second bowl attempt
+			firstthrow=true;			
+			drawpins(pins);			
+			
+			resetPins(pins);			
+		}	
 	}
 
 	/**
@@ -102,7 +126,7 @@ public class WeBowlTiger {
 		frame.getContentPane().setSize(new Dimension(200, 400));
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.getContentPane().setPreferredSize(new Dimension(40, 40));
-		frame.setBounds(100, 100, 1450, 640);
+		frame.setBounds(100, 100, 1920, 1080);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setCursor(Cursor.HAND_CURSOR);
@@ -184,16 +208,36 @@ public class WeBowlTiger {
 			}
 		});
 		lblBall.setIcon(new ImageIcon(dimgball));
-		lblBall.setBounds(184, 488, 51, 46);
+		lblBall.setBounds(180, 490, 50, 40);
 		frame.getContentPane().add(lblBall);
 		ball=lblBall;
         
 		
-		JSeparator separator = new JSeparator();
-		separator.setOrientation(SwingConstants.VERTICAL);
-		separator.setForeground(Color.BLACK);
-		separator.setBounds(380, 11, 2, 523);
-		frame.getContentPane().add(separator);
+		JSeparator separator1 = new JSeparator();
+		separator1.setOrientation(SwingConstants.VERTICAL);
+		separator1.setForeground(Color.BLACK);
+		separator1.setBounds(10, 11, 2, 523);
+		frame.getContentPane().add(separator1);
+
+		
+		JSeparator separator2 = new JSeparator();
+		separator2.setOrientation(SwingConstants.VERTICAL);
+		separator2.setForeground(Color.BLACK);
+		separator2.setBounds(30, 11, 2, 523);
+		frame.getContentPane().add(separator2);
+		
+		
+		JSeparator separator3 = new JSeparator();
+		separator3.setOrientation(SwingConstants.VERTICAL);
+		separator3.setForeground(Color.BLACK);
+		separator3.setBounds(370, 11, 2, 523);
+		frame.getContentPane().add(separator3);
+		
+		JSeparator separator4 = new JSeparator();
+		separator4.setOrientation(SwingConstants.VERTICAL);
+		separator4.setForeground(Color.BLACK);
+		separator4.setBounds(390, 11, 2, 523);
+		frame.getContentPane().add(separator4);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));

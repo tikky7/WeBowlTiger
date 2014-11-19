@@ -11,16 +11,21 @@ public class MovingBall extends JPanel {
 	private int speed = 20;
 	private final int boundary=300;
 	private Graphics graphics = null;
+	
 	public MovingBall( JFrame refframe, JLabel reflabel, int refspeed ) {
 		frame=refframe;
 		label=reflabel;
 		speed=refspeed;
 	}
+	
+	
 	public void draw( ) {
 		assert( label != null);
 		int steps=boundary/speed;
 		assert(steps>0);
+		
 		graphics=frame.getContentPane().getGraphics();
+		
 		label.setVisible(false);
 
 		frame.repaint();
@@ -29,7 +34,7 @@ public class MovingBall extends JPanel {
 		frame.paintComponents(graphics);
 		
 		for( int idx=0; idx<steps; idx++ ) {
-			label.setBounds(184, 540-idx*speed, 51, 46);
+			label.setBounds(180, 490-idx*speed, 50, 40);
 			label.setVisible(true);
 			try {
 				Thread.sleep(300);
@@ -43,7 +48,8 @@ public class MovingBall extends JPanel {
 			
 					
 		}
-		label.setBounds(184, 540, 51, 46);
+		
+		label.setBounds(180, 490, 50, 40);
 		label.setVisible(true);
 
 		frame.repaint();
