@@ -128,76 +128,49 @@ public class WeBowlTiger {
 		}		
 		Image dimgball = simgball.getScaledInstance(Width, Height,Image.SCALE_SMOOTH);
 		
-		JLabel lblPin1 = new JLabel("1");
-		lblPin1.setIcon(new ImageIcon(dimgPins));
-		lblPin1.setSize(new Dimension(Width, Height));
-		lblPin1.setBounds(184, 193, 34, 56);
-		frame.getContentPane().add(lblPin1);
-		pinsLblArray.add(lblPin1);
-
-		JLabel lblPin2 = new JLabel("2");
-		lblPin2.setIcon(new ImageIcon(dimgPins));
-		lblPin2.setSize(new Dimension(Width, Height));
-		lblPin2.setBounds(135, 142, 34, 56);
-		frame.getContentPane().add(lblPin2);
-		pinsLblArray.add(lblPin2);
-
-		JLabel lblPin3 = new JLabel("3");
-		lblPin3.setIcon(new ImageIcon(dimgPins));
-		lblPin3.setSize(new Dimension(Width, Height));
-		lblPin3.setBounds(232, 142, 34, 56);
-		frame.getContentPane().add(lblPin3);
-		pinsLblArray.add(lblPin3);
-
-		JLabel lblPin4 = new JLabel("4");
-		lblPin4.setIcon(new ImageIcon(dimgPins));
-		lblPin4.setSize(new Dimension(Width, Height));
-		lblPin4.setBounds(90, 78, 34, 56);
-		frame.getContentPane().add(lblPin4);
-		pinsLblArray.add(lblPin4);
+		JLabel[] pins = new JLabel[10];
 		
-		JLabel lblPin5 = new JLabel("5");
-		lblPin5.setIcon(new ImageIcon(dimgPins));
-		lblPin5.setSize(new Dimension(Width, Height));
-		lblPin5.setBounds(184, 78, 34, 56);
-		frame.getContentPane().add(lblPin5);
-		pinsLblArray.add(lblPin5);
+		for (int i = 0; i<10; i++)
+		{
+			pins[i] = new JLabel(Integer.toString(i+1));
+			pins[i].setIcon(new ImageIcon(dimgPins));
+			pins[i].setSize(new Dimension(Width, Height));
+			switch (i)
+			{
+			//row 1
+				case 0: pins[i].setBounds(180, 190, 30, 60);
+					break;
+			//row 2
+				case 1: pins[i].setBounds(130, 140, 30, 60);
+					break;
+				case 2: pins[i].setBounds(230, 140, 30, 60);
+					break;
+			//row 3
+				case 3: pins[i].setBounds(90, 90, 30, 60);
+					break;
+				case 4: pins[i].setBounds(180, 90, 30, 60);
+					break;
+				case 5: pins[i].setBounds(280, 90, 30, 60);
+					break;
+			//row 4
+				case 6: pins[i].setBounds(40, 40, 30, 60);
+					break;
+				case 7: pins[i].setBounds(130, 40, 30, 60);
+					break;
+				case 8: pins[i].setBounds(230, 40, 30, 60);
+					break;
+				case 9: pins[i].setBounds(330, 40, 30, 60);
+					break;
+					
+				default: 
+					break;
+			}
+			
+			frame.getContentPane().add(pins[i]);
+			pinsLblArray.add(pins[i]);
+		}
 		
-		JLabel lblPin6 = new JLabel("6");
-		lblPin6.setIcon(new ImageIcon(dimgPins));
-		lblPin6.setSize(new Dimension(Width, Height));
-		lblPin6.setBounds(278, 78, 34, 56);
-		frame.getContentPane().add(lblPin6);
-		pinsLblArray.add(lblPin6);
-		
-		JLabel lblPin7 = new JLabel("7");
-		lblPin7.setSize(new Dimension(Width, Height));		
-		lblPin7.setIcon(new ImageIcon(dimgPins));
-		lblPin7.setBounds(42, 11, 34, 56);
-		frame.getContentPane().add(lblPin7);
-		pinsLblArray.add(lblPin7);
 	
-		JLabel lblPin8 = new JLabel("8");
-		lblPin8.setIcon(new ImageIcon(dimgPins));
-		lblPin8.setSize(new Dimension(Width, Height));
-		lblPin8.setBounds(153, 20, 34, 39);
-		frame.getContentPane().add(lblPin8);
-		pinsLblArray.add(lblPin8);
-		
-		JLabel lblPin9 = new JLabel("9");
-		lblPin9.setIcon(new ImageIcon(dimgPins));
-		lblPin9.setSize(new Dimension(Width, Height));
-		lblPin9.setBounds(232, 11, 34, 56);
-		frame.getContentPane().add(lblPin9);
-		pinsLblArray.add(lblPin9);
-		
-		JLabel lblPin10 = new JLabel("10");
-		lblPin10.setIcon(new ImageIcon(dimgPins));
-		lblPin10.setSize(new Dimension(Width, Height));
-		lblPin10.setBounds(330, 16, 34, 46);
-		frame.getContentPane().add(lblPin10);
-		pinsLblArray.add(lblPin10);
-		
 		JLabel lblBall = new JLabel("ball");
 		lblBall.addMouseListener(new MouseAdapter() {
 			@Override
@@ -219,7 +192,7 @@ public class WeBowlTiger {
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
 		separator.setForeground(Color.BLACK);
-		separator.setBounds(374, 11, 2, 523);
+		separator.setBounds(380, 11, 2, 523);
 		frame.getContentPane().add(separator);
 		
 		JPanel panel_1 = new JPanel();
@@ -227,7 +200,7 @@ public class WeBowlTiger {
 		panel_1.setBounds(518, 50, 83, 81);
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
-		
+	
 		JPanel panel = new JPanel();
 		panel.setBounds(36, 2, 24, 26);
 		panel_1.add(panel);
@@ -1693,5 +1666,6 @@ public class WeBowlTiger {
 		textPane_123.setBackground(Color.WHITE);
 		textPane_123.setBounds(3, 5, 18, 18);
 		panel_123.add(textPane_123);
+
 	}
 }
