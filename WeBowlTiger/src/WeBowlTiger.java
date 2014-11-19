@@ -31,6 +31,7 @@ public class WeBowlTiger {
     private JLabel ball;
     private ArrayList<JLabel> pinsLblArray = new ArrayList<JLabel>();
     boolean firstthrow = true;
+    int lastCount = 0;
    
     boolean[] pins = new boolean[]{true,true,true,true,true,true,true,true,true,true};
     
@@ -129,13 +130,15 @@ public class WeBowlTiger {
 		movingball.draw();
 		if ( firstthrow == false )
 		{
-			firstthrow=true;			
+			firstthrow=true;
+			count = count - lastCount;
 			drawpins(pins);
 			Thread.sleep(4000);
 			for( int idx=0; idx<10;idx++ ) 
 				pins[idx]=true;
 		} 
 		else {
+			lastCount = count;
 			firstthrow=false;
 		}
 		
@@ -223,7 +226,7 @@ public class WeBowlTiger {
         						 txt.setText(String.valueOf(value));
         					 }
         				 }
-        				 if (scoreTxt != null) {
+        				 if (scoreTxt != null && userScore[i] != -1) {
         					 scoreTxt.setText(String.valueOf(userScore[i]));
         				 }
         			 }
@@ -233,17 +236,23 @@ public class WeBowlTiger {
      }
      
      public int[] calculateScore(int input[][]) {
- 		int[] score = new int[10];
+ 		int[] score = new int[]{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
  		int total = 0;
  		for (int i = 0; i < 9; i++) {
- 			if (input[i][0] == 10) {
- 				score[i] = total + 10 + input[i+1][0] + input[i+1][1];
- 			} else if (input[i][1] == 10) {
- 				score[i] = total + 10 + input[i+1][0];
- 			} else {
- 				score[i] = total + input[i][0] + input[i][1];
+ 			if (input[i][0] != -1 && input[i][1] != -1) {
+	 			if (input[i][0] == 10) {
+	 				if (input[i+1][0] != -1 && input[i+1][1] != -1) {
+	 					score[i] = total + 10 + input[i+1][0] + input[i+1][1];
+	 				}
+	 			} else if (input[i][1] == 10) {
+	 				if (input[i+1][0] != -1) {
+	 					score[i] = total + 10 + input[i+1][0];
+	 				}
+	 			} else {
+	 				score[i] = total + input[i][0] + input[i][1];
+	 			}
+	 			total = score[i];
  			}
- 			total = score[i];
  		}
  		if (input[9][0] == 10) {
  			score[9] = total + 10 + input[9][1] + input[9][2];

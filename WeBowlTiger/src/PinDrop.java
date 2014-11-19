@@ -9,7 +9,7 @@ public class PinDrop {
 		
 		Random randomGenerator = new Random();
 		//value is between 1-10 below function is exclusive on borders
-		int valKnockedDownTotal = randomGenerator.nextInt(TotalPinsUp+1);
+		int valKnockedDownTotal = randomGenerator.nextInt(TotalPinsUp);
 		
 		return valKnockedDownTotal;
 	}
