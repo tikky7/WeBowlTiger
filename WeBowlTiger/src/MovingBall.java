@@ -8,7 +8,7 @@ public class MovingBall {
 	private JLabel label = null;
 	private JFrame frame = null;
 	private int speed = 20;
-	private final int boundary=360;
+	private final int boundary=300;
 	private Graphics graphics = null;
 	public MovingBall( JFrame refframe, JLabel reflabel, int refspeed ) {
 		frame=refframe;
@@ -28,7 +28,7 @@ public class MovingBall {
 		frame.paint(graphics);
 		
 		for( int idx=0; idx<steps; idx++ ) {
-			label.setBounds(184, 610-idx*speed, 51, 46);
+			label.setBounds(184, 540-idx*speed, 51, 46);
 			label.setVisible(true);
 
 			frame.repaint();
@@ -42,7 +42,7 @@ public class MovingBall {
 			}
 					
 		}
-		label.setBounds(184, 610, 51, 46);
+		label.setBounds(184, 540, 51, 46);
 		label.setVisible(true);
 
 		frame.repaint();

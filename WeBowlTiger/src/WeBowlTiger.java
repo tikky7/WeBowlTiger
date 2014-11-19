@@ -51,7 +51,7 @@ public class WeBowlTiger {
 	}
 
      public void move( ) {
-		MovingBall movingball = new MovingBall(frame,ball,20);
+		MovingBall movingball = new MovingBall(frame,ball,15);
 		movingball.draw();
 	}
 
@@ -63,7 +63,7 @@ public class WeBowlTiger {
 		frame.getContentPane().setSize(new Dimension(200, 400));
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.getContentPane().setPreferredSize(new Dimension(40, 40));
-		frame.setBounds(100, 100, 1450, 600);
+		frame.setBounds(100, 100, 1450, 640);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setCursor(Cursor.HAND_CURSOR);
@@ -150,15 +150,17 @@ public class WeBowlTiger {
 		frame.getContentPane().add(lblPin10);
 		
 		JLabel lblBall = new JLabel("ball");
-		lblBall.setIcon(new ImageIcon(dimgball));
-		lblBall.setBounds(184, 488, 51, 46);
-		frame.getContentPane().add(lblBall);
-           lblBall.addMouseListener(new MouseAdapter() {
+		lblBall.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseExited(MouseEvent arg0) {
+			public void mouseReleased(MouseEvent arg0) {
 				move();
 			}
 		});
+		lblBall.setIcon(new ImageIcon(dimgball));
+		lblBall.setBounds(184, 488, 51, 46);
+		frame.getContentPane().add(lblBall);
+		ball=lblBall;
+        
 		
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
