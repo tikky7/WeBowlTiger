@@ -2,9 +2,10 @@ import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 
-public class MovingBall {
+public class MovingBall extends JPanel {
 	private JLabel label = null;
 	private JFrame frame = null;
 	private int speed = 20;
@@ -25,21 +26,21 @@ public class MovingBall {
 		frame.repaint();
 		frame.setVisible(true);
 
-		frame.paint(graphics);
+		frame.paintComponents(graphics);
 		
 		for( int idx=0; idx<steps; idx++ ) {
 			label.setBounds(184, 540-idx*speed, 51, 46);
 			label.setVisible(true);
-
-			frame.repaint();
-			frame.setVisible(true);
-			frame.paint(graphics);
 			try {
 				Thread.sleep(300);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			frame.repaint();
+			frame.setVisible(true);
+			frame.paintComponents(graphics);
+			
 					
 		}
 		label.setBounds(184, 540, 51, 46);
@@ -47,7 +48,7 @@ public class MovingBall {
 
 		frame.repaint();
 		frame.setVisible(true);
-		frame.paint(graphics);
+		frame.paintComponents(graphics);
 	}
 
 }

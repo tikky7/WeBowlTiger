@@ -3,6 +3,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
@@ -10,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -25,7 +27,25 @@ import javax.swing.border.TitledBorder;
 public class WeBowlTiger {
 
 	private JFrame frame;
-     private JLabel ball;
+    private JLabel ball;
+    private ArrayList<JLabel> pinsLblArray = new ArrayList<JLabel>();
+    boolean firstthrow = true;
+   
+    boolean[] pins = new boolean[]{true,true,true,true,true,true,true,true,true,true};
+    
+    
+    private void drawpins( boolean[] pins) {
+    	for( int idx=0; idx<10; idx++) {
+    		
+    		if ( pins[idx]==true ) {
+    			pinsLblArray.get(idx).setVisible(true);
+    		} else {
+    			pinsLblArray.get(idx).setVisible(false);
+    		}
+    	}
+    	Graphics graphics=frame.getContentPane().getGraphics();
+    	frame.paint(graphics);
+    }
 
 	/**
 	 * Launch the application.
@@ -42,6 +62,7 @@ public class WeBowlTiger {
 			}
 		});
 	}
+	
 
 	/**
 	 * Create the application.
@@ -50,9 +71,27 @@ public class WeBowlTiger {
 		initialize();
 	}
 
-     public void move( ) {
-		MovingBall movingball = new MovingBall(frame,ball,15);
+     public void move( ) throws InterruptedException {
+    	PinDrop pindrop = new PinDrop();
+    	assert( pindrop != null );
+    	
+    	pindrop.getPinsStillStanding(pins);
+		MovingBall movingball = new MovingBall(frame,ball,60);
+		
 		movingball.draw();
+		if ( firstthrow == false )
+		{
+			firstthrow=true;			
+			drawpins(pins);
+			Thread.sleep(4000);
+			for( int idx=0; idx<10;idx++ ) 
+				pins[idx]=true;
+		} 
+		else {
+			firstthrow=false;
+		}
+		
+		drawpins(pins);
 	}
 
 	/**
@@ -94,66 +133,81 @@ public class WeBowlTiger {
 		lblPin1.setSize(new Dimension(Width, Height));
 		lblPin1.setBounds(184, 193, 34, 56);
 		frame.getContentPane().add(lblPin1);
+		pinsLblArray.add(lblPin1);
 
 		JLabel lblPin2 = new JLabel("2");
 		lblPin2.setIcon(new ImageIcon(dimgPins));
 		lblPin2.setSize(new Dimension(Width, Height));
 		lblPin2.setBounds(135, 142, 34, 56);
 		frame.getContentPane().add(lblPin2);
+		pinsLblArray.add(lblPin2);
 
 		JLabel lblPin3 = new JLabel("3");
 		lblPin3.setIcon(new ImageIcon(dimgPins));
 		lblPin3.setSize(new Dimension(Width, Height));
 		lblPin3.setBounds(232, 142, 34, 56);
 		frame.getContentPane().add(lblPin3);
+		pinsLblArray.add(lblPin3);
 
 		JLabel lblPin4 = new JLabel("4");
 		lblPin4.setIcon(new ImageIcon(dimgPins));
 		lblPin4.setSize(new Dimension(Width, Height));
 		lblPin4.setBounds(90, 78, 34, 56);
 		frame.getContentPane().add(lblPin4);
+		pinsLblArray.add(lblPin4);
 		
 		JLabel lblPin5 = new JLabel("5");
 		lblPin5.setIcon(new ImageIcon(dimgPins));
 		lblPin5.setSize(new Dimension(Width, Height));
 		lblPin5.setBounds(184, 78, 34, 56);
 		frame.getContentPane().add(lblPin5);
+		pinsLblArray.add(lblPin5);
 		
 		JLabel lblPin6 = new JLabel("6");
 		lblPin6.setIcon(new ImageIcon(dimgPins));
 		lblPin6.setSize(new Dimension(Width, Height));
 		lblPin6.setBounds(278, 78, 34, 56);
 		frame.getContentPane().add(lblPin6);
+		pinsLblArray.add(lblPin6);
 		
 		JLabel lblPin7 = new JLabel("7");
 		lblPin7.setSize(new Dimension(Width, Height));		
 		lblPin7.setIcon(new ImageIcon(dimgPins));
 		lblPin7.setBounds(42, 11, 34, 56);
 		frame.getContentPane().add(lblPin7);
+		pinsLblArray.add(lblPin7);
 	
 		JLabel lblPin8 = new JLabel("8");
 		lblPin8.setIcon(new ImageIcon(dimgPins));
 		lblPin8.setSize(new Dimension(Width, Height));
 		lblPin8.setBounds(153, 20, 34, 39);
 		frame.getContentPane().add(lblPin8);
+		pinsLblArray.add(lblPin8);
 		
 		JLabel lblPin9 = new JLabel("9");
 		lblPin9.setIcon(new ImageIcon(dimgPins));
 		lblPin9.setSize(new Dimension(Width, Height));
 		lblPin9.setBounds(232, 11, 34, 56);
 		frame.getContentPane().add(lblPin9);
+		pinsLblArray.add(lblPin9);
 		
 		JLabel lblPin10 = new JLabel("10");
 		lblPin10.setIcon(new ImageIcon(dimgPins));
 		lblPin10.setSize(new Dimension(Width, Height));
 		lblPin10.setBounds(330, 16, 34, 46);
 		frame.getContentPane().add(lblPin10);
+		pinsLblArray.add(lblPin10);
 		
 		JLabel lblBall = new JLabel("ball");
 		lblBall.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-				move();
+				try {
+					move();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		lblBall.setIcon(new ImageIcon(dimgball));

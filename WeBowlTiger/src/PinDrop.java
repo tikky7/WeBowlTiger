@@ -15,7 +15,7 @@ public class PinDrop {
 	}
 	
 	
-	public boolean[] getPinsStillStanding (boolean[] PinsCurrentlyUp)
+	public void getPinsStillStanding (boolean[] PinsCurrentlyUp)
 	{
 		int totalPinsUp = 0;
 		int numPinsToKnockDown = 0;
@@ -46,14 +46,9 @@ public class PinDrop {
 					PinsCurrentlyUp[(int) locations.get(location)] = false;
 					locations.remove(location);
 					numPinsToKnockDown--;
-				}
-			
-			return PinsCurrentlyUp;
+				}			
 		}
-		else
-		{
-			return PinsCurrentlyUp;
-		}
+		
 	}
 	
 }
